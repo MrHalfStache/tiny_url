@@ -17,7 +17,6 @@
       --steel: #808080;
       --cloud: #ECEEF1;
       --mist: #F4F6FB;
-      --sapphire: #5378FC;
       --white: #FFFFFF;
     }
 
@@ -29,7 +28,6 @@
       flex-direction: column;
     }
 
-    /* ── Header ── */
     header {
       background: var(--white);
       border-bottom: 3px solid var(--orange);
@@ -41,66 +39,22 @@
       box-shadow: 0 2px 8px rgba(18,18,18,0.07);
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
-
-    /* SVG Thryv wordmark built from brand spec */
-    .logo-wordmark {
-      font-size: 1.6rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--black);
-      line-height: 1;
-    }
-
-    .logo-wordmark span {
-      color: var(--orange);
-    }
-
-    .logo-arrow {
-      width: 22px;
-      height: 22px;
-      flex-shrink: 0;
-    }
-
-    .logo-badge {
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--white);
-      background: var(--midnight);
-      padding: 3px 8px;
-      border-radius: 4px;
-    }
-
-    header nav {
-      font-size: 0.82rem;
-      color: var(--steel);
-    }
-
-    header nav a {
-      color: var(--night);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-arrow { width: 22px; height: 22px; flex-shrink: 0; }
+    .logo-wordmark { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.03em; color: var(--black); line-height: 1; }
+    .logo-badge { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--white); background: var(--midnight); padding: 3px 8px; border-radius: 4px; }
+    header nav { font-size: 0.82rem; color: var(--steel); }
+    header nav a { color: var(--night); text-decoration: none; font-weight: 500; }
     header nav a:hover { color: var(--orange); }
 
-    /* ── Hero Banner ── */
     .hero {
       background: var(--midnight);
-      padding: 52px 24px 48px;
+      padding: 48px 24px 44px;
       text-align: center;
       color: var(--white);
       position: relative;
       overflow: hidden;
     }
-
     .hero::before {
       content: '';
       position: absolute;
@@ -108,45 +62,12 @@
       background: radial-gradient(ellipse at 70% 50%, rgba(255,80,0,0.18) 0%, transparent 65%);
       pointer-events: none;
     }
+    .hero-eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--orange); margin-bottom: 14px; }
+    .hero h1 { font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.15; margin-bottom: 12px; letter-spacing: -0.02em; }
+    .hero h1 em { font-style: normal; color: var(--orange); }
+    .hero p { font-size: 1rem; color: rgba(255,255,255,0.7); max-width: 440px; margin: 0 auto; line-height: 1.6; }
 
-    .hero-eyebrow {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--orange);
-      margin-bottom: 14px;
-    }
-
-    .hero h1 {
-      font-size: clamp(1.9rem, 4vw, 2.8rem);
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 12px;
-      letter-spacing: -0.02em;
-    }
-
-    .hero h1 em {
-      font-style: normal;
-      color: var(--orange);
-    }
-
-    .hero p {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.7);
-      max-width: 440px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    /* ── Card ── */
-    .main {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      padding: 40px 20px 60px;
-    }
+    .main { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 40px 20px 60px; gap: 24px; }
 
     .card {
       background: var(--white);
@@ -154,23 +75,13 @@
       box-shadow: 0 4px 24px rgba(41,53,93,0.10);
       padding: 36px 32px;
       width: 100%;
-      max-width: 580px;
+      max-width: 620px;
       border-top: 4px solid var(--orange);
     }
 
-    .card-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--steel);
-      margin-bottom: 10px;
-    }
+    .card-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--steel); margin-bottom: 10px; }
 
-    .input-row {
-      display: flex;
-      gap: 10px;
-    }
+    .input-row { display: flex; gap: 10px; }
 
     input[type="url"] {
       flex: 1;
@@ -184,14 +95,8 @@
       outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
-
     input[type="url"]::placeholder { color: var(--steel); }
-
-    input[type="url"]:focus {
-      border-color: var(--orange);
-      background: var(--white);
-      box-shadow: 0 0 0 3px rgba(255,80,0,0.12);
-    }
+    input[type="url"]:focus { border-color: var(--orange); background: var(--white); box-shadow: 0 0 0 3px rgba(255,80,0,0.12); }
 
     button#shortenBtn {
       padding: 13px 22px;
@@ -205,65 +110,16 @@
       cursor: pointer;
       white-space: nowrap;
       transition: background 0.2s, transform 0.1s;
-      letter-spacing: 0.01em;
     }
+    button#shortenBtn:not(:disabled):hover { background: var(--orange-dark); transform: translateY(-1px); }
+    button#shortenBtn:disabled { background: var(--cloud); color: var(--steel); cursor: not-allowed; transform: none; }
 
-    button#shortenBtn:not(:disabled):hover {
-      background: var(--orange-dark);
-      transform: translateY(-1px);
-    }
+    .error { margin-top: 16px; padding: 12px 16px; border-radius: 8px; background: #fff5f2; border: 1px solid #ffc9b5; color: #c03000; font-size: 0.88rem; display: none; }
 
-    button#shortenBtn:disabled {
-      background: var(--cloud);
-      color: var(--steel);
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .error {
-      margin-top: 16px;
-      padding: 12px 16px;
-      border-radius: 8px;
-      background: #fff5f2;
-      border: 1px solid #ffc9b5;
-      color: #c03000;
-      font-size: 0.88rem;
-      display: none;
-    }
-
-    .result-box {
-      margin-top: 20px;
-      padding: 20px;
-      border-radius: 10px;
-      background: var(--mist);
-      border: 1.5px solid var(--cloud);
-      display: none;
-    }
-
-    .result-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--steel);
-      margin-bottom: 8px;
-    }
-
-    .result-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .result-row a {
-      flex: 1;
-      color: var(--midnight);
-      font-weight: 700;
-      font-size: 1.05rem;
-      word-break: break-all;
-      text-decoration: none;
-    }
-
+    .result-box { margin-top: 20px; padding: 20px; border-radius: 10px; background: var(--mist); border: 1.5px solid var(--cloud); display: none; }
+    .result-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--steel); margin-bottom: 8px; }
+    .result-row { display: flex; align-items: center; gap: 10px; }
+    .result-row a { flex: 1; color: var(--midnight); font-weight: 700; font-size: 1.05rem; word-break: break-all; text-decoration: none; }
     .result-row a:hover { color: var(--orange); text-decoration: underline; }
 
     button#copyBtn {
@@ -279,45 +135,140 @@
       white-space: nowrap;
       transition: all 0.2s;
     }
+    button#copyBtn:hover { background: var(--midnight); color: var(--white); }
+    button#copyBtn.copied { border-color: #16a34a; background: #16a34a; color: var(--white); }
 
-    button#copyBtn:hover {
-      background: var(--midnight);
-      color: var(--white);
+    .info-strip { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--cloud); display: flex; gap: 20px; flex-wrap: wrap; }
+    .info-item { display: flex; align-items: center; gap: 7px; font-size: 0.78rem; color: var(--steel); }
+    .info-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+
+    /* ── History Panel ── */
+    .history-card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(41,53,93,0.10);
+      width: 100%;
+      max-width: 620px;
+      overflow: hidden;
     }
 
-    button#copyBtn.copied {
-      border-color: #16a34a;
-      background: #16a34a;
-      color: var(--white);
-    }
-
-    /* ── Divider + info ── */
-    .info-strip {
-      margin-top: 28px;
-      padding-top: 20px;
-      border-top: 1px solid var(--cloud);
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .info-item {
+    .history-header {
       display: flex;
       align-items: center;
-      gap: 7px;
-      font-size: 0.78rem;
+      justify-content: space-between;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--cloud);
+      background: var(--white);
+    }
+
+    .history-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--midnight);
+    }
+
+    .history-title .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); }
+
+    .history-count {
+      background: var(--mist);
       color: var(--steel);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+      border: 1px solid var(--cloud);
     }
 
-    .info-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--orange);
+    .btn-clear {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--steel);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 4px 8px;
+      border-radius: 5px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .btn-clear:hover { color: #c03000; background: #fff5f2; }
+
+    .history-empty {
+      padding: 36px 24px;
+      text-align: center;
+      color: var(--steel);
+      font-size: 0.88rem;
+    }
+    .history-empty span { display: block; font-size: 1.8rem; margin-bottom: 8px; }
+
+    .history-list { max-height: 380px; overflow-y: auto; }
+
+    .history-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 24px;
+      border-bottom: 1px solid var(--mist);
+      transition: background 0.15s;
+    }
+    .history-item:last-child { border-bottom: none; }
+    .history-item:hover { background: var(--mist); }
+
+    .history-item-info { flex: 1; min-width: 0; }
+
+    .history-short {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--midnight);
+      text-decoration: none;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .history-short:hover { color: var(--orange); }
+
+    .history-original {
+      font-size: 0.75rem;
+      color: var(--steel);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .history-meta {
+      font-size: 0.7rem;
+      color: var(--cloud);
+      white-space: nowrap;
+      color: var(--steel);
       flex-shrink: 0;
+      text-align: right;
     }
 
-    /* ── Footer ── */
+    .btn-copy-hist {
+      padding: 5px 12px;
+      border-radius: 6px;
+      border: 1.5px solid var(--cloud);
+      background: var(--white);
+      color: var(--night);
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .btn-copy-hist:hover { border-color: var(--midnight); color: var(--midnight); }
+    .btn-copy-hist.copied { border-color: #16a34a; background: #16a34a; color: var(--white); }
+
     footer {
       background: var(--midnight);
       color: rgba(255,255,255,0.5);
@@ -325,7 +276,6 @@
       padding: 18px 24px;
       font-size: 0.78rem;
     }
-
     footer strong { color: var(--white); }
     footer a { color: var(--orange); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
@@ -333,16 +283,15 @@
     @media (max-width: 500px) {
       .input-row { flex-direction: column; }
       .card { padding: 24px 18px; }
+      .history-item { padding: 12px 16px; }
       header { padding: 0 16px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
   <header>
     <a href="https://www.thryv.com" target="_blank" class="logo">
-      <!-- Arrow icon inspired by Thryv brand arrow element -->
       <svg class="logo-arrow" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="11" cy="11" r="11" fill="#FF5000"/>
         <path d="M7 14.5L14.5 7M14.5 7H9M14.5 7V13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -353,15 +302,14 @@
     <nav>Powered by <a href="https://www.thryv.com" target="_blank">thryv.com</a></nav>
   </header>
 
-  <!-- Hero -->
   <div class="hero">
     <span class="hero-eyebrow">Free Link Shortener</span>
     <h1>Shorten. Share.<br><em>Thryv.</em></h1>
     <p>Turn long, messy URLs into clean, shareable Thryv links — instantly, no account needed.</p>
   </div>
 
-  <!-- Main Card -->
   <div class="main">
+    <!-- Shortener Card -->
     <div class="card">
       <p class="card-label">Paste your long URL</p>
       <div class="input-row">
@@ -381,53 +329,132 @@
 
       <div class="info-strip">
         <div class="info-item"><span class="info-dot"></span> No account required</div>
-        <div class="info-item"><span class="info-dot"></span> Works anywhere</div>
+        <div class="info-item"><span class="info-dot"></span> History saved to this device</div>
         <div class="info-item"><span class="info-dot"></span> Instant &amp; free</div>
       </div>
     </div>
+
+    <!-- History Card -->
+    <div class="history-card">
+      <div class="history-header">
+        <div class="history-title">
+          <span class="dot"></span>
+          My Link History
+          <span class="history-count" id="histCount">0 links</span>
+        </div>
+        <button class="btn-clear" id="clearBtn" onclick="clearHistory()">Clear all</button>
+      </div>
+      <div id="historyEmpty" class="history-empty">
+        <span>🔗</span>
+        No links yet — shorten your first URL above!
+      </div>
+      <div class="history-list" id="historyList" style="display:none;"></div>
+    </div>
   </div>
 
-  <!-- Footer -->
   <footer>
     <strong>Thryv TinyURL</strong> &nbsp;·&nbsp; Built with <a href="https://www.thryv.com" target="_blank">Thryv</a> &nbsp;·&nbsp; Powered by TinyURL API
   </footer>
 
   <script>
+    const STORAGE_KEY = 'thryv_tinyurl_history';
+
     const input = document.getElementById("urlInput");
     const btn = document.getElementById("shortenBtn");
     const errorBox = document.getElementById("errorBox");
     const resultBox = document.getElementById("resultBox");
     const resultLink = document.getElementById("resultLink");
     const copyBtn = document.getElementById("copyBtn");
+    const historyList = document.getElementById("historyList");
+    const historyEmpty = document.getElementById("historyEmpty");
+    const histCount = document.getElementById("histCount");
 
-    input.addEventListener("input", () => {
-      btn.disabled = !input.value.trim();
-    });
+    // Load history from localStorage
+    function getHistory() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+      catch { return []; }
+    }
 
-    input.addEventListener("keydown", e => {
-      if (e.key === "Enter" && !btn.disabled) shorten();
-    });
+    function saveHistory(h) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(h));
+    }
 
+    function formatDate(ts) {
+      const d = new Date(ts);
+      return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })
+        + ' ' + d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function renderHistory() {
+      const h = getHistory();
+      const n = h.length;
+      histCount.textContent = n === 1 ? '1 link' : `${n} links`;
+
+      if (n === 0) {
+        historyEmpty.style.display = 'block';
+        historyList.style.display = 'none';
+        return;
+      }
+
+      historyEmpty.style.display = 'none';
+      historyList.style.display = 'block';
+      historyList.innerHTML = h.slice().reverse().map((item, i) => `
+        <div class="history-item">
+          <div class="history-item-info">
+            <a class="history-short" href="${item.short}" target="_blank" rel="noopener noreferrer">${item.short}</a>
+            <span class="history-original" title="${item.original}">${item.original}</span>
+          </div>
+          <div class="history-meta">${formatDate(item.ts)}</div>
+          <button class="btn-copy-hist" onclick="copyHistItem(this, '${item.short}')">Copy</button>
+        </div>
+      `).join('');
+    }
+
+    function addToHistory(original, short) {
+      const h = getHistory();
+      // Avoid duplicates for same original URL
+      const exists = h.find(x => x.original === original);
+      if (!exists) {
+        h.push({ original, short, ts: Date.now() });
+        saveHistory(h);
+      }
+      renderHistory();
+    }
+
+    function clearHistory() {
+      if (!confirm('Clear all saved link history from this device?')) return;
+      localStorage.removeItem(STORAGE_KEY);
+      renderHistory();
+    }
+
+    function copyHistItem(btn, url) {
+      navigator.clipboard.writeText(url);
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+    }
+
+    // Input events
+    input.addEventListener("input", () => { btn.disabled = !input.value.trim(); });
+    input.addEventListener("keydown", e => { if (e.key === "Enter" && !btn.disabled) shorten(); });
     btn.addEventListener("click", shorten);
 
     async function shorten() {
       const url = input.value.trim();
       if (!url) return;
-
       btn.disabled = true;
       btn.textContent = "Shortening...";
       errorBox.style.display = "none";
       resultBox.style.display = "none";
-
       try {
         const res = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`);
         if (!res.ok) throw new Error();
         const short = await res.text();
         if (!short.startsWith("http")) throw new Error();
-
         resultLink.href = short;
         resultLink.textContent = short;
         resultBox.style.display = "block";
+        addToHistory(url, short);
       } catch {
         errorBox.textContent = "Could not shorten that URL. Please check it and try again.";
         errorBox.style.display = "block";
@@ -441,11 +468,11 @@
       navigator.clipboard.writeText(resultLink.href);
       copyBtn.textContent = "Copied!";
       copyBtn.classList.add("copied");
-      setTimeout(() => {
-        copyBtn.textContent = "Copy";
-        copyBtn.classList.remove("copied");
-      }, 2000);
+      setTimeout(() => { copyBtn.textContent = "Copy"; copyBtn.classList.remove("copied"); }, 2000);
     });
+
+    // Init
+    renderHistory();
   </script>
 </body>
 </html>
