@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thryv TinyURL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #FF5000;
+      --orange-dark: #e04600;
+      --midnight: #29355D;
+      --black: #121212;
+      --night: #4D4D4D;
+      --steel: #808080;
+      --cloud: #ECEEF1;
+      --mist: #F4F6FB;
+      --sapphire: #5378FC;
+      --white: #FFFFFF;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--mist);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--white);
+      border-bottom: 3px solid var(--orange);
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(18,18,18,0.07);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    /* SVG Thryv wordmark built from brand spec */
+    .logo-wordmark {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--black);
+      line-height: 1;
+    }
+
+    .logo-wordmark span {
+      color: var(--orange);
+    }
+
+    .logo-arrow {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .logo-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      background: var(--midnight);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    header nav {
+      font-size: 0.82rem;
+      color: var(--steel);
+    }
+
+    header nav a {
+      color: var(--night);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    header nav a:hover { color: var(--orange); }
+
+    /* ── Hero Banner ── */
+    .hero {
+      background: var(--midnight);
+      padding: 52px 24px 48px;
+      text-align: center;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(255,80,0,0.18) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--orange);
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+      max-width: 440px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── Card ── */
+    .main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px 60px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(41,53,93,0.10);
+      padding: 36px 32px;
+      width: 100%;
+      max-width: 580px;
+      border-top: 4px solid var(--orange);
+    }
+
+    .card-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--steel);
+      margin-bottom: 10px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    input[type="url"] {
+      flex: 1;
+      padding: 13px 16px;
+      border-radius: 8px;
+      border: 1.5px solid var(--cloud);
+      background: var(--mist);
+      color: var(--black);
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input[type="url"]::placeholder { color: var(--steel); }
+
+    input[type="url"]:focus {
+      border-color: var(--orange);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(255,80,0,0.12);
+    }
+
+    button#shortenBtn {
+      padding: 13px 22px;
+      border-radius: 8px;
+      border: none;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.01em;
+    }
+
+    button#shortenBtn:not(:disabled):hover {
+      background: var(--orange-dark);
+      transform: translateY(-1px);
+    }
+
+    button#shortenBtn:disabled {
+      background: var(--cloud);
+      color: var(--steel);
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .error {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      background: #fff5f2;
+      border: 1px solid #ffc9b5;
+      color: #c03000;
+      font-size: 0.88rem;
+      display: none;
+    }
+
+    .result-box {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      background: var(--mist);
+      border: 1.5px solid var(--cloud);
+      display: none;
+    }
+
+    .result-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--steel);
+      margin-bottom: 8px;
+    }
+
+    .result-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .result-row a {
+      flex: 1;
+      color: var(--midnight);
+      font-weight: 700;
+      font-size: 1.05rem;
+      word-break: break-all;
+      text-decoration: none;
+    }
+
+    .result-row a:hover { color: var(--orange); text-decoration: underline; }
+
+    button#copyBtn {
+      padding: 8px 18px;
+      border-radius: 7px;
+      border: 2px solid var(--midnight);
+      background: transparent;
+      color: var(--midnight);
+      font-weight: 700;
+      font-size: 0.82rem;
+      font-family: inherit;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    button#copyBtn:hover {
+      background: var(--midnight);
+      color: var(--white);
+    }
+
+    button#copyBtn.copied {
+      border-color: #16a34a;
+      background: #16a34a;
+      color: var(--white);
+    }
+
+    /* ── Divider + info ── */
+    .info-strip {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--cloud);
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.78rem;
+      color: var(--steel);
+    }
+
+    .info-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--midnight);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 18px 24px;
+      font-size: 0.78rem;
+    }
+
+    footer strong { color: var(--white); }
+    footer a { color: var(--orange); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 500px) {
+      .input-row { flex-direction: column; }
+      .card { padding: 24px 18px; }
+      header { padding: 0 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <a href="https://www.thryv.com" target="_blank" class="logo">
+      <!-- Arrow icon inspired by Thryv brand arrow element -->
+      <svg class="logo-arrow" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="11" cy="11" r="11" fill="#FF5000"/>
+        <path d="M7 14.5L14.5 7M14.5 7H9M14.5 7V13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo-wordmark">thryv</span>
+      <span class="logo-badge">TinyURL</span>
+    </a>
+    <nav>Powered by <a href="https://www.thryv.com" target="_blank">thryv.com</a></nav>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <span class="hero-eyebrow">Free Link Shortener</span>
+    <h1>Shorten. Share.<br><em>Thryv.</em></h1>
+    <p>Turn long, messy URLs into clean, shareable Thryv links — instantly, no account needed.</p>
+  </div>
+
+  <!-- Main Card -->
+  <div class="main">
+    <div class="card">
+      <p class="card-label">Paste your long URL</p>
+      <div class="input-row">
+        <input type="url" id="urlInput" placeholder="https://example.com/very/long/url/..." />
+        <button id="shortenBtn" disabled>Shorten →</button>
+      </div>
+
+      <div class="error" id="errorBox"></div>
+
+      <div class="result-box" id="resultBox">
+        <p class="result-label">Your Thryv short link ✓</p>
+        <div class="result-row">
+          <a id="resultLink" href="#" target="_blank" rel="noopener noreferrer"></a>
+          <button id="copyBtn">Copy</button>
+        </div>
+      </div>
+
+      <div class="info-strip">
+        <div class="info-item"><span class="info-dot"></span> No account required</div>
+        <div class="info-item"><span class="info-dot"></span> Works anywhere</div>
+        <div class="info-item"><span class="info-dot"></span> Instant &amp; free</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <strong>Thryv TinyURL</strong> &nbsp;·&nbsp; Built with <a href="https://www.thryv.com" target="_blank">Thryv</a> &nbsp;·&nbsp; Powered by TinyURL API
+  </footer>
+
+  <script>
+    const input = document.getElementById("urlInput");
+    const btn = document.getElementById("shortenBtn");
+    const errorBox = document.getElementById("errorBox");
+    const resultBox = document.getElementById("resultBox");
+    const resultLink = document.getElementById("resultLink");
+    const copyBtn = document.getElementById("copyBtn");
+
+    input.addEventListener("input", () => {
+      btn.disabled = !input.value.trim();
+    });
+
+    input.addEventListener("keydown", e => {
+      if (e.key === "Enter" && !btn.disabled) shorten();
+    });
+
+    btn.addEventListener("click", shorten);
+
+    async function shorten() {
+      const url = input.value.trim();
+      if (!url) return;
+
+      btn.disabled = true;
+      btn.textContent = "Shortening...";
+      errorBox.style.display = "none";
+      resultBox.style.display = "none";
+
+      try {
+        const res = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`);
+        if (!res.ok) throw new Error();
+        const short = await res.text();
+        if (!short.startsWith("http")) throw new Error();
+
+        resultLink.href = short;
+        resultLink.textContent = short;
+        resultBox.style.display = "block";
+      } catch {
+        errorBox.textContent = "Could not shorten that URL. Please check it and try again.";
+        errorBox.style.display = "block";
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Shorten →";
+      }
+    }
+
+    copyBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(resultLink.href);
+      copyBtn.textContent = "Copied!";
+      copyBtn.classList.add("copied");
+      setTimeout(() => {
+        copyBtn.textContent = "Copy";
+        copyBtn.classList.remove("copied");
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
